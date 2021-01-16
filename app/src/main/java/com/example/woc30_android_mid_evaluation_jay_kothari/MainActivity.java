@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.*;
 
@@ -61,6 +63,44 @@ public class MainActivity extends AppCompatActivity {
 
         //Saturday
         timeTable.put("Saturday", new ArrayList<ActivitySchedule>());
+
+        //Displaying the next upcoming activity of the day
+        showUpcoming();
+    }
+
+    private void showUpcoming(){
+        Date currentTime = Calendar.getInstance().getTime();
+        ArrayList<ActivitySchedule> temp = new ArrayList<>();
+
+        switch(currentTime.getDay()){
+            case 1:
+                temp = timeTable.get("Monday");
+                break;
+            case 2:
+                temp = timeTable.get("Tuesday");
+                break;
+            case 3:
+                temp = timeTable.get("Wednesday");
+                break;
+            case 4:
+                temp = timeTable.get("Thursday");
+                break;
+            case 5:
+                temp = timeTable.get("Friday");
+                break;
+            case 6:
+                temp = timeTable.get("Saturday");
+                break;
+        }
+
+        LocalTime t = LocalTime.parse(new SimpleDateFormat("HH:m").format(currentTime));
+        for(ActivitySchedule a : temp){
+            if(t.compareTo(a.from)<=0){
+                ((TextView)findViewById(R.id.txtUpcomingMessage)).setText(a.toString());
+                return;
+            }
+        }
+        ((TextView)findViewById(R.id.txtUpcomingMessage)).setText("No more classes for today");
     }
 
     public void showTimeTable(View view){
@@ -71,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<ActivitySchedule> temp = timeTable.get(selectedDay);
         intent.putExtra(TIME_TABLE, temp);
 
-//        Bundle args = new Bundle();
         startActivity(intent);
     }
 }
