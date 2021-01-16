@@ -16,6 +16,6 @@ public class ActivitySchedule implements Serializable {
 
     @Override
     public String toString() {
-        return from.toString() + " - " + to.toString() + "\t " + activityName;
+        return from.toString() + "-" + to.toString() + "\t " + activityName;
     }
 }

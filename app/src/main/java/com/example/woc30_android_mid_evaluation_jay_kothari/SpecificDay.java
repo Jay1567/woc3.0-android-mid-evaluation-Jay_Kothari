@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -25,15 +26,16 @@ public class SpecificDay extends AppCompatActivity {
         ArrayList<ActivitySchedule> temp = (ArrayList<ActivitySchedule>)intent.getSerializableExtra(MainActivity.TIME_TABLE);
 
         if(temp.size() > 0) {
-            ArrayAdapter<ActivitySchedule> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temp);
+            ArrayAdapter<ActivitySchedule> arrayAdapter = new ArrayAdapter<>(this, R.layout.list_view_text_view, temp);
             timeTable.setAdapter(arrayAdapter);
         }
         else{
             ArrayList<String> t = new ArrayList<>();
             t.add("Nothing for " + intent.getStringExtra(MainActivity.DAY));
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, t);
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.list_view_text_view, t);
             timeTable.setAdapter(arrayAdapter);
         }
 
+        timeTable.addFooterView(new View(this));
     }
 }
