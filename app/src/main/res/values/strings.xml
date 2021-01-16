@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">woc3.0-android-mid-evaluation-Jay_Kothari</string>
     <string name="Title">MSc. I.T. Sem 2 Time Table</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
 </resources>
